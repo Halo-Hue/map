@@ -1,16 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
- body {
-    margin: 0 auto;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+ #tsparticles {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1; 
+      background: linear-gradient(135deg, #0d47a1, #001f54);
+     }
 
-    justify-content: center;
-    align-items: center;
+    body {
+
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: transparent;
+      color: #ffffff;;
+      text-align: center;
     }
+
+    /* Navigation bar */
+    nav {
+      background-color: rgba(18, 47, 128, 0.85);
+      padding: 15px 0;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s, transform 0.2s;
+      padding: 10px 20px;
+      transition: background-color 0.4s ease, transform 0.3s ease;
+      border-radius: 5px;
+    }
+
+    nav a:hover {
+      background-color: #201583;
+      transform: scale(1.60);
+    }
+
+    h1 {
+      margin-top: 30px;
+    }
+
+    img {
+      width: 300px;
+      margin-top: 20px;
+      border-radius: 8px;
+    }
+
+    p {
+      width: 80%;
+      max-width: 700px;
+      margin: 20px auto;
+      line-height: 1.5;
+    }
+  
  img {
   width: 100px;
   margin-bottom: 20px;
@@ -19,12 +73,36 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+ }
   
  button {
   padding: 8px 16px;
   font-size: 14px;
   cursor: pointer;
+  margin: 5px;
  }
+
+ button-row {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  margin-top: 5px;
+ }
+</style>
+</head>
+<body>
+  <div id="tsparticles"></div>
+
+  <nav>
+
+    <a href="https://halo-hue.github.io/html/">Courses</a>
+    <a href="https://halo-hue.github.io/html/projects.html">Projects</a>
+    <a href="https://halo-hue.github.io/html/concept.html">Concepts</a>
+    <a href="https://halo-hue.github.io/html/Databases.html">Database Queries</a>
+    <a href="https://halo-hue.github.io/html/documentation.html">Documentation</a>
+    <a href="https://halo-hue.github.io/html/Dev.html">About Me</a>
+  </nav>
+
  
 </style>
 </head>
@@ -38,9 +116,39 @@
 <button onclick="document.getElementById('myImage').src='cayo.png'">Cayo</button><br>
 <button onclick="document.getElementById('myImage').src='stanncreek.png'">Stann Creek</button><br>
 <button onclick="document.getElementById('myImage').src='toledo.png'">Toledo</button><br>
+
+   <script> src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+  <script>
+    src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"
+    tsParticles.load("tsparticles", {
+      background: { color: { value: "transparent" } },
+      fpsLimit: 60,
+      interactivity: {
+        events: { onHover: { enable: true, mode: "repulse" }, resize: true },
+        modes: { repulse: { distance: 100, duration: 0.4 } }
+      },
+      particles: {
+        color: { value: "#ffffff" },
+        links: { color: "#ffffff", distance: 150, enable: true, opacity: 0.3, width: 1 },
+        move: { enable: true, speed: 1.2, outModes: { default: "bounce" } },
+        number: { density: { enable: true, area: 800 }, value: 60 },
+        opacity: { value: 0.5 },
+        shape: { type: "circle" },
+        size: { value: { min: 1, max: 3 } }
+      },
+      detectRetina: true
+    });
+
+    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 10;">
+    <img 
+      src="data:image/jpeg;base64,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"
+      alt="Chibi Klein Sticker"
+      style="width: 120px; border-radius: 12px;"
+  </script>
 </body>
 
 </html>
+
 
 
 
